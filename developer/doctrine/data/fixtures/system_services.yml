@@ -62,3 +62,17 @@ Model_Entity_Service:
   Kebab_Application:
     Story: Application_Management
     Resource: Kebab_Application
+
+  # Todo List Manager
+  Todo_Management:
+    Story: Todo_Management
+    Resource: Owg_Todo
+
+  Todo_View_Index:
+    Story: Todo_View
+    Action: Owg_Todo_Index
+    
+  Todo_View_Get:
+    Story: Todo_View
+    Action: Owg_Todo_Get
+    

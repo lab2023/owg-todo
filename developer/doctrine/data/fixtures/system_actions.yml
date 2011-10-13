@@ -11,3 +11,13 @@ Model_Entity_Action:
     Controller: Default_Backend
     name: desktop
 
+  # Todo Index
+  Owg_Todo_Index:
+    Controller: Owg_Todo
+    name: index
+
+  # Todo get
+  Owg_Todo_Get:
+    Controller: Owg_Todo
+    name: get
+

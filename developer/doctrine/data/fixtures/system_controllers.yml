@@ -65,3 +65,8 @@ Model_Entity_Controller:
   Kebab_Application:
     Module: Kebab
     name: application
+
+  # Owg MODULE #########################################################
+  Owg_Todo:
+    Module: Owg
+    name: todo

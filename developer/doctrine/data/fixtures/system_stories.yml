@@ -75,3 +75,25 @@ Model_Entity_Story:
       tr:
         title: Geribildirim yönetimi
         description: Kullanıcı geri bildirimlerini yönetin
+
+  Todo_Management:
+    name: todo_management
+    active: 1
+    Translation:
+      en:
+        title: Todo Management
+        description: Manage all todos
+      tr:
+        title: Yapılacak iş yönetimi
+        description: Bütün işleri yönetin
+
+  Todo_View:
+    name: todo_view
+    active: 1
+    Translation:
+      en:
+        title: Todo View
+        descriptio: Only views todo
+      tr:
+        title: Yapılacak işlerin gösterimi
+        description: Yapılacak işlerin gösterimi
