@@ -68,7 +68,7 @@ class Kebab_Controller_Helper_Filter extends Zend_Controller_Action_Helper_Abstr
     public function populateCriteria($query, $mapping)
     {
         // initial dql
-        $query->where('TRUE = TRUE');
+        $query->where('1 = 1');
 
         // loop through filters sent by client
         if (is_array($this->filters)) {

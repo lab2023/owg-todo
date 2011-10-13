@@ -38,7 +38,6 @@ class Owg_TodoController extends Kebab_Rest_Controller
 {
     public function indexAction()
     {
-        die('index');
         $userSessionId = Zend_Auth::getInstance()->getIdentity()->id;
 
         $mapping  = array(
