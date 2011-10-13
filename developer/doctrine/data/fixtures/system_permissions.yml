@@ -5,6 +5,9 @@ Model_Entity_Permission:
   Member_2:
     Story: Change_Profile
     Role: Member
+  TodoView:
+    Story: Todo_View
+    Role: Member
 
   Admin_1:
     Story: Access_Desktop
@@ -26,5 +29,8 @@ Model_Entity_Permission:
     Role: Admin
   Admin_7:
     Story: Application_Management
+    Role: Admin
+  TodoManagement:
+    Story: Todo_Management
     Role: Admin
     

@@ -93,7 +93,7 @@ Model_Entity_Story:
     Translation:
       en:
         title: Todo View
-        descriptio: Only views todo
+        description: Only views todo
       tr:
         title: Yapılacak işlerin gösterimi
         description: Yapılacak işlerin gösterimi
