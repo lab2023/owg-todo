@@ -41,10 +41,10 @@ class Owg_TodoController extends Kebab_Rest_Controller
         $userSessionId = Zend_Auth::getInstance()->getIdentity()->id;
 
         $mapping  = array(
-            'id'     => 'todo.id',
-            'todo'   => 'todo.todo',
-            'status' => 'todo.status',
-            'date'   => 'todo.date'
+            'id'      => 'todo.id',
+            'todo'    => 'todo.todo',
+            'status'  => 'todo.status',
+            'dueDate' => 'todo.dueDate'
         );
         
         $sort          = $this->_helper->sort($mapping);
@@ -63,7 +63,21 @@ class Owg_TodoController extends Kebab_Rest_Controller
         $this->_helper->response(true, 200)->addData($retData)->addTotal($pager->getNumResults())->getResponse();
     }
 
-    public function getAction(){}
+    public function getAction()
+    {
+        $userSessionId = Zend_Auth::getInstance()->getIdentity()->id;
+        $param = $this->_helper->param();
+        $todoId = $param['id'];
+
+        $todo = Doctrine_Core::getTable('Model_Entity_Todo')->find($todoId);
+
+        if ($userSessionId != $todo->id) {
+            throw new Kebab_Exception('User can see only his/her todos');
+        }
+
+        $this->_helper->response(200)->data($todo)->getResponse();
+    }
+
     public function postAction(){}
     public function putAction(){}
     public function deleteAction(){}
