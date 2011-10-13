@@ -1,0 +1,22 @@
+Todo:
+  tableName: owg_todo
+  columns:
+    todo:
+      type: string(255)
+    status:
+      type: boolean
+    dueDate:
+      type: date
+
+  actAs:
+    Timestampable:
+    SoftDelete:
+    Blameable:
+    Searchable:
+      fields: [todo]
+      className: OwgTodoSearch
+
+  options:
+    type: INNODB
+    collate: utf8_bin
+    charset: utf8
