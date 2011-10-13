@@ -121,8 +121,8 @@ Model_Entity_Application:
     active: 1
     Translation:
       en:
-        title: OWG To-do
-        description: Manage your to-do lists
+        title: OWG Todo
+        description: Manage your todo lists
       tr:
-        title: OWG To-do
-        description: To-dp listesinizi yönetin
+        title: OWG Todo
+        description: Todo listesinizi yönetin

@@ -12,11 +12,16 @@ KebabOS.applications.todo.application.models.GroupingDataStore = Ext.extend(Keba
 
     bootstrap: null,
 
-    restAPI: 'rest/service',
+    restAPI: 'owg/todo',
 
     readerFields:[
         {name: 'id', type:'integer'},
-        {name: 'title', type:'string'},
-        {name: 'description', type:'string'}
-    ]
+        {name: 'todo', type:'string'},
+        {name: 'status', type:'boolean'},
+        {name: 'dueDate', type:'date'}
+    ],
+
+    groupField: 'status',
+
+    sortInfo:{field:'id',direction:'DESC'}
 });

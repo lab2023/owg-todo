@@ -72,7 +72,7 @@ Kebab.library.ext.RESTfulGroupingDataStore = Ext.extend(Ext.data.GroupingStore, 
         
         // HTTP Proxy
         this.proxy = new Ext.data.HttpProxy({
-            url : this.restAPI
+            url : Kebab.helper.url(this.restAPI)
         });
         
         // JSON Reader

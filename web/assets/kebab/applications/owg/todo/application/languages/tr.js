@@ -25,5 +25,5 @@
  * @version    1.5.0
  */
 KebabOS.applications.todo.application.languages.tr = {
-
+    'Add New Todo': 'Yeni Todo Ekle'
 };

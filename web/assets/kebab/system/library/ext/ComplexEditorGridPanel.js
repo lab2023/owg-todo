@@ -56,7 +56,7 @@ Kebab.library.ext.ComplexEditorGridPanel = Ext.extend(Ext.grid.EditorGridPanel, 
         });
 
         // Grid selection model & column model and store
-        this.sm = this.selectionModel
+        this.sm = this.selectionModel;
         this.store = this.dataStore;
         this.cm = this.columnModel;
 
