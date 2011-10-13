@@ -38,7 +38,6 @@ class Owg_Model_Todo
     public static function getAllByUserId($userId, $options)
     {
         $query = Doctrine_Query::create()
-                ->select('*')
                 ->from('Model_Entity_Todo todo')
                 ->where('todo.created_by = ?', $userId)
                 ->useQueryCache(Kebab_Cache_Query::isEnable());
