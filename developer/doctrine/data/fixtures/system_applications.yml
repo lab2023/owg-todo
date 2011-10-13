@@ -110,3 +110,19 @@ Model_Entity_Application:
       tr:
         title: Uygulama Yöneticisi
         description: Kebab uygulamalarını yönetin
+
+  Todo:
+    identity: todo-application
+    className: KebabOS.applications.todo.application.Bootstrap
+    name: todo
+    type: application
+    department: owg
+    version: 0.0.1
+    active: 1
+    Translation:
+      en:
+        title: OWG To-do
+        description: Manage your to-do lists
+      tr:
+        title: OWG To-do
+        description: To-dp listesinizi yönetin

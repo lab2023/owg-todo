@@ -26,3 +26,11 @@ Model_Entity_StoryApplication:
   Record_7:
     Story: Application_Management
     Application: ApplicationManager
+
+  TodoView:
+    Story: Todo_View
+    Application: Todo
+
+  TodoManagement:
+    Story: Todo_Management
+    Application: Todo
