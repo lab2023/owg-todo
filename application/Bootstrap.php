@@ -250,7 +250,8 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
                                   'user-sign-up',
                                   'user-activation',
                                   'user-invitation',
-                                  'application')
+                                  'application'),
+                 'owg' => array('todo')
             )
         );
         $front->getRouter()->addRoute('rest', $restRoute);
