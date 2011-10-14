@@ -71,7 +71,7 @@ class Owg_TodoController extends Kebab_Rest_Controller
 
         $todo = Doctrine_Core::getTable('Model_Entity_Todo')->find($todoId);
 
-        if ($userSessionId != $todo->id) {
+        if ($userSessionId != $todo['created_by']) {
             throw new Kebab_Exception('User can see only his/her todos');
         }
 
