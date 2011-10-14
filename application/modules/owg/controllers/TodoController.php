@@ -158,7 +158,12 @@ class Owg_TodoController extends Kebab_Rest_Controller
         $ids = $this->_helper->array()->convertArray($params['data']);
 
         // Dql
-        Doctrine_Query::create()->delete()->from('Model_Entity_Todo todo')->whereIn('todo.id', $ids)->useQueryCache(Kebab_Cache_Query::isEnable())->execute();
+        Doctrine_Query::create()
+                ->delete()
+                ->from('Model_Entity_Todo todo')
+                ->whereIn('todo.id', $ids)
+                ->useQueryCache(Kebab_Cache_Query::isEnable())
+                ->execute();
 
         // Response
         $this->_helper->response(true, 204)->addNotification(Kebab_Notification::INFO, 'Record was deleted.')->getResponse();

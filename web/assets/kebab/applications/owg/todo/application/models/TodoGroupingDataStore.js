@@ -18,10 +18,17 @@ KebabOS.applications.todo.application.models.TodoGroupingDataStore = Ext.extend(
         {name: 'id', type:'integer'},
         {name: 'todo', type:'string'},
         {name: 'status', type:'boolean'},
+        {name: 'created_at', type:'date', format: 'Y-m-d'},
         {name: 'dueDate', type:'date', format: 'Y-m-d'}
     ],
 
     groupField: 'status',
 
-    sortInfo:{field:'status',direction:'DESC'}
+    sortInfo:{field:'status',direction:'DESC'},
+
+    listeners : {
+        write : function(store){
+            store.reload();
+        }
+    }
 });

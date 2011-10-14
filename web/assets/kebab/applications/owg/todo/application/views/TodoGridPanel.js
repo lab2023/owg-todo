@@ -24,12 +24,15 @@ KebabOS.applications.todo.application.views.TodoGridPanel = Ext.extend(Ext.grid.
         // grid base config
         var config = {
             border:false,
+            trackMouseOver:true,
             stripeRows: true,
+            clicksToEdit: true,
             loadMask: true,
             view: new Ext.grid.GroupingView({
                 emptyText:  'Record not found...',
-                groupTextTpl: '{text} ({[values.rs.length]} {[values.rs.length > 1 ? "Items" : "Item"]})',
-                forceFit: true
+                groupTextTpl: '<span class="todo-status">{text} ({[values.rs.length]} {[values.rs.length > 1 ? "Items" : "Item"]})</span>',
+                forceFit: true,
+                showGroupName: false
             })
         };
 
@@ -48,6 +51,11 @@ KebabOS.applications.todo.application.views.TodoGridPanel = Ext.extend(Ext.grid.
 
         this.addEvents('createTodo');
 
+        this.getView().getRowClass = function(rec) {
+            var status = rec.get('status') ? 'active' : 'complated';
+            return 'todo-' + status;
+        };
+
         KebabOS.applications.todo.application.views.TodoGridPanel.superclass.initComponent.apply(this, arguments);
     },
 
@@ -64,30 +72,84 @@ KebabOS.applications.todo.application.views.TodoGridPanel = Ext.extend(Ext.grid.
      * Build the grid columns
      */
     buildColumns: function() {
+
+        // Initialize grid filfers
+        var filters = new Ext.ux.grid.GridFilters({
+            encode: true,
+            filters: [{
+                type: 'string',
+                dataIndex: 'todo'
+            },{
+                type: 'date',
+                dataIndex: 'created_at'
+            },{
+                type: 'date',
+                dataIndex: 'dueDate'
+            },{
+                type: 'boolean',
+                dataIndex: 'status'
+            }]
+        });
+
+        // Add grid filter plug-in
+        this.plugins = [filters];
         
         return [{
             header:  Kebab.helper.translate('Todo'),
             dataIndex: 'todo',
-            width: .7,
+            filterable: true,
+            width: .6,
             editor: new Ext.form.TextField()
+        },{
+            header: Kebab.helper.translate('Created At'),
+            dataIndex: 'created_at',
+            filterable: true,
+            align: 'center',
+            width: .1,
+            renderer: function(v) {
+                return v.format('Y-m-d');
+            }
         },{
             header: Kebab.helper.translate('Due Date'),
             dataIndex: 'dueDate',
-            width: .2,
-            editor: new Ext.form.DateField({format: 'Y-d-m'}),
+            align: 'center',
+            filterable: true,
+            width: .1,
+            editor: new Ext.form.DateField({format: 'Y-m-d'}),
             renderer: function(v) {
-                return v ? v.format('Y-d-m') : 'No Due Date';
+
+                var today = new Date().format('Y-m-d'),
+                    val =  v ? v.format('Y-m-d') : 'No due date';
+
+                return (val == today) ? // Due data warning
+                    '<span style="color:red;">' + val + '</span>' : val;
             }
         },{
             header: Kebab.helper.translate('Status'),
             dataIndex: 'status',
+            filterable: true,
             width: .1,
             xtype:'checkcolumn',
             align: 'center',
             renderer: function(v) {
-                var status = v ? 'Active' : 'Completed';
-                return Kebab.helper.translate(status);
+                var status = v ? 'Active' : 'Complated';
+                return '<span class="status-check-column">' + Kebab.helper.translate(status) + '</span>';
             }
+        },{
+            width:.05,
+            align:'center',
+            xtype: 'actioncolumn',
+            items: [{
+                tooltip: Kebab.helper.translate('Delete this todo'),
+                handler: function(grid, index, recId, o, e) {
+                    var rec = grid.getStore().getAt(index);
+                    this.onDestroyTodo(rec);
+                },
+                getClass: function(v, meta, rec) {
+                    return 'icon-delete action-column';
+                },
+                scope:this
+            }]
         }];
     },
 
@@ -105,9 +167,7 @@ KebabOS.applications.todo.application.views.TodoGridPanel = Ext.extend(Ext.grid.
         var newTodoButton = {
             text: Kebab.helper.translate('Add New Todo'),
             iconCls: 'icon-add',
-            handler: function() {
-                this.fireEvent('addTodo');
-            },
+            handler: this.onCreateTodo,
             scope: this
         };
 
@@ -121,6 +181,21 @@ KebabOS.applications.todo.application.views.TodoGridPanel = Ext.extend(Ext.grid.
         return new Kebab.library.ext.ExtendedPagingToolbar({
             store: this.getStore()
         });
+    },
+
+    /**
+     * Fire create todo event
+     */
+    onCreateTodo: function() {
+        this.fireEvent('createTodo');
+    },
+
+    /**
+     * Fire destroy todo event
+     * @param rec data
+     */
+    onDestroyTodo: function(rec) {
+        this.fireEvent('destroyTodo', rec);
     }
 
 });

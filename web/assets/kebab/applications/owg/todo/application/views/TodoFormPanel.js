@@ -4,7 +4,7 @@
  * @category    Kebab
  * @package     Applications
  * @namespace   KebabOS.applications.userManager.application.views
- * @author      Yunus ÖZCAN <yunus.ozcan@lab2023.com>
+ * @author      Tayfun Öziş ERİKAN <tayfun.ozis.erikan@lab2023.com>
  * @copyright   Copyright (c) 2010-2011 lab2023 - internet technologies TURKEY Inc. (http://www.lab2023.com)
  * @license     http://www.kebab-project.com/cms/licensing
  */
@@ -15,17 +15,18 @@ KebabOS.applications.todo.application.views.TodoFormPanel = Ext.extend(Ext.form.
         // form config
         var config = {
             labelAlign: 'top',
+            waitMsgTarget:true,
             defaultType: 'textfield',
             bodyStyle: 'padding:5px 10px;',
             defaults: {
                 anchor: '100%'
             },
             items:[{
-                fieldLabel: Kebab.helper.translate('Your todo here'),
+                fieldLabel: Kebab.helper.translate('Type your todo here'),
                 allowBlank: false,
                 name: 'todo'
             },{
-                fieldLabel: Kebab.helper.translate('Due Date'),
+                fieldLabel: Kebab.helper.translate('Due date'),
                 name: 'dueDate',
                 format: 'Y-m-d',
                 xtype: 'datefield'
@@ -44,6 +45,11 @@ KebabOS.applications.todo.application.views.TodoFormPanel = Ext.extend(Ext.form.
                     this.ownerCt.close();
                 },
                 scope:this
+            }],
+            keys:[{
+                key: [Ext.EventObject.ENTER], handler: function() {
+                    this.ownerCt.bootstrap.defaultController.fireEvent('createTodo', this);
+                }, scope:this
             }]
         };
 

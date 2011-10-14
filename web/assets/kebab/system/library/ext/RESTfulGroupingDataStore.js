@@ -103,11 +103,5 @@ Kebab.library.ext.RESTfulGroupingDataStore = Ext.extend(Ext.data.GroupingStore, 
     
     buildReaderFields: function() {        
         return this.readerFields;
-    },
-    
-    listeners : {
-        write : function(){
-            this.reload();
-        }
     }
 });

@@ -7,3 +7,23 @@
 #todo-application-shortcut div {
     background-image: url(images/shortcut.png);
 }
+.todo-status {
+    font-size:15px;
+}
+.todo-complated *{
+    color:#999999 !important;
+}
+span.status-check-column {
+    cursor: pointer;
+    text-decoration: underline;
+}
+span.status-check-column:hover {
+    text-decoration: none;
+}
+.action-column {
+    width:16px;
+    height:16px;
+}
+strong {
+    font-weight: bold;
+}

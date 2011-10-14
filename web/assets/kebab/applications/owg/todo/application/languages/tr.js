@@ -25,5 +25,19 @@
  * @version    1.5.0
  */
 KebabOS.applications.todo.application.languages.tr = {
-    'Add New Todo': 'Yeni Todo Ekle'
+    'Add New Todo': 'Yeni Yapılacak Ekle',
+    'New Todo Item': 'Yeni Yapılacak Kaydı',
+    'Type your todo here': 'Yapılacak kaydınızı yazınız',
+    'Due date': 'Son yapılma zamanı',
+    'Todo': 'Yapılacak',
+    'Create': 'Oluştur',
+    'Created At': 'Oluşturulma',
+    'Due Date' :  'Son Yapılma Zamanı',
+    'No due date' :  'Belirtilmemiş',
+    'Status' : 'Durum',
+    'Delete this todo' : 'Yapılacak kaydını sil',
+    'Active': 'Aktif',
+    'Complated' : 'Tamamlanmış',
+    'Are you sure ?' : 'Emin misiniz ?',
+    ' record will be deleted.<br />Do you accept this ?':  ' kaydı silinecektir.<br />Bunu onaylıyor musunuz ?'
 };
