@@ -8,7 +8,7 @@
  * @copyright   Copyright (c) 2010-2011 lab2023 - internet technologies TURKEY Inc. (http://www.lab2023.com)
  * @license     http://www.kebab-project.com/cms/licensing
  */
-KebabOS.applications.todo.application.models.GroupingDataStore = Ext.extend(Kebab.library.ext.RESTfulGroupingDataStore, {
+KebabOS.applications.todo.application.models.TodoGroupingDataStore = Ext.extend(Kebab.library.ext.RESTfulGroupingDataStore, {
 
     bootstrap: null,
 
@@ -18,7 +18,7 @@ KebabOS.applications.todo.application.models.GroupingDataStore = Ext.extend(Keba
         {name: 'id', type:'integer'},
         {name: 'todo', type:'string'},
         {name: 'status', type:'boolean'},
-        {name: 'dueDate', type:'date'}
+        {name: 'dueDate', type:'date', format: 'Y-m-d'}
     ],
 
     groupField: 'status',

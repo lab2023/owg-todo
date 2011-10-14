@@ -30,7 +30,7 @@ KebabOS.applications.userManager.application.layouts.Layout = Ext.extend(Ext.Tab
         var config = {
             items:this.userGrid,
             activeTab: 0
-        }
+        };
 
         Ext.apply(this, config);
 
