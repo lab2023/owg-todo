@@ -92,54 +92,61 @@ class Owg_TodoController extends Kebab_Rest_Controller
         // Get Param
         $params = $this->_helper->param();
 
-        // Set response
-        $response = $this->_helper->response();
-
         // Create todo entity
         $todo = new Model_Entity_Todo();
         $todo->todo = $params['todo'];
-        $todo->dueDate = $params['dueDate'];
-        $todo->status = $params['status'];
-
-        // Check validation
-        $validator = new Kebab_Validate_DoctrineTable($todo, 'Model_Entity_Todo');
-        if ($validator->isValid()) {
-            die(var_dump($validator->getErrors()));
-        } else {
-            $todo->save();
-            $response->setSuccess(true, 204);
+        if (array_key_exists('dueDate', $params)) {
+            $todo->dueDate = $params['dueDate'];
         }
+        $todo->status = 1;
+        $todo->save();
 
         // Response
-        $response->getResponse();
+        $this->_helper->response(true, 201)->addNotification(Kebab_Notification::INFO, 'Todo is created.')->getResponse();
     }
 
     public function putAction()
     {
-        // Get Param
+       // Getting parameters
         $params = $this->_helper->param();
 
-        // Set response
-        $response = $this->_helper->response();
+        // Convert data collection array if not
+        $collection = $this->_helper->array()->isCollection($params['data'])
+                ? $params['data']
+                : $this->_helper->array()->convertRecordtoCollection($params['data']);
 
-        // Create todo entity
-        $todo = new Model_Entity_Todo();
-        $todo->assignIdentifier($params['id']);
-        $todo->todo = $params['todo'];
-        $todo->dueDate = $params['dueDate'];
-        $todo->status = $params['status'];
+        // Updating status
+        Doctrine_Manager::connection()->beginTransaction();
+        try {
+            // Doctrine
+            foreach ($collection as $record) {
+                $todo = new Model_Entity_Todo();
+                $todo->assignIdentifier($record['id']);
+                if (array_key_exists('todo', $record)) {
+                    $todo->set('todo', $record['todo']);
+                }
 
-        // Validation
-        $validator = new Kebab_Validate_DoctrineTable($todo, 'Model_Entity_Todo');
-        if ($validator->isValid()) {
-            die(var_dump($validator->getErrors()));
-        } else {
-            $todo->save();
-            $response->setSuccess(true, 204);
+                if (array_key_exists('dueDate', $record)) {
+                    $todo->set('dueDate', $record['dueDate']);
+                }
+
+                if (array_key_exists('status', $record)) {
+                    $todo->set('status', $record['status']);
+                }
+                $todo->save();
+            }
+            Doctrine_Manager::connection()->commit();
+
+            // Response
+            $this->_helper->response(true, 202)->getResponse();
+
+        } catch (Zend_Exception $e) {
+            Doctrine_Manager::connection()->rollback();
+            throw $e;
+        } catch (Doctrine_Exception $e) {
+            Doctrine_Manager::connection()->rollback();
+            throw $e;
         }
-
-        // Response
-        $response->getResponse();
     }
 
     public function deleteAction()
