@@ -17,7 +17,8 @@ KebabOS.applications.todo.application.views.TodoGridPanel = Ext.extend(Ext.grid.
 
         // Create the grid data store
         this.store = new KebabOS.applications.todo.application.models.TodoGroupingDataStore({
-            bootstrap:this.bootstrap
+            bootstrap: this.bootstrap,
+            autoSave: true
         });
 
         // grid base config
@@ -28,8 +29,7 @@ KebabOS.applications.todo.application.views.TodoGridPanel = Ext.extend(Ext.grid.
             view: new Ext.grid.GroupingView({
                 emptyText:  'Record not found...',
                 groupTextTpl: '{text} ({[values.rs.length]} {[values.rs.length > 1 ? "Items" : "Item"]})',
-                forceFit: true,
-                hideGroupedColumn: true
+                forceFit: true
             })
         };
 
@@ -66,22 +66,28 @@ KebabOS.applications.todo.application.views.TodoGridPanel = Ext.extend(Ext.grid.
     buildColumns: function() {
         
         return [{
-            header: Kebab.helper.translate('ID'),
-            dataIndex: 'id'
-        },{
             header:  Kebab.helper.translate('Todo'),
             dataIndex: 'todo',
+            width: .7,
             editor: new Ext.form.TextField()
         },{
             header: Kebab.helper.translate('Due Date'),
             dataIndex: 'dueDate',
-            editor: new Ext.form.DateField(),
+            width: .2,
+            editor: new Ext.form.DateField({format: 'Y-d-m'}),
             renderer: function(v) {
-                return v.format('Y-d-m');
+                return v ? v.format('Y-d-m') : 'No Due Date';
             }
         },{
             header: Kebab.helper.translate('Status'),
-            dataIndex: 'status'
+            dataIndex: 'status',
+            width: .1,
+            xtype:'checkcolumn',
+            align: 'center',
+            renderer: function(v) {
+                var status = v ? 'Active' : 'Completed';
+                return Kebab.helper.translate(status);
+            }
         }];
     },
 

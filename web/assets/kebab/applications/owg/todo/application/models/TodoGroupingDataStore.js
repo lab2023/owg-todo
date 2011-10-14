@@ -23,5 +23,5 @@ KebabOS.applications.todo.application.models.TodoGroupingDataStore = Ext.extend(
 
     groupField: 'status',
 
-    sortInfo:{field:'id',direction:'DESC'}
+    sortInfo:{field:'status',direction:'DESC'}
 });

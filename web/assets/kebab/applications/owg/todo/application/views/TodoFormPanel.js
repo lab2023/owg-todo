@@ -22,7 +22,7 @@ KebabOS.applications.todo.application.views.TodoFormPanel = Ext.extend(Ext.form.
             },
             items:[{
                 fieldLabel: Kebab.helper.translate('Your todo here'),
-                allowBlank:false,
+                allowBlank: false,
                 name: 'todo'
             },{
                 fieldLabel: Kebab.helper.translate('Due Date'),
