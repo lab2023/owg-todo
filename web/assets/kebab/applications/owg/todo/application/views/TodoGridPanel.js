@@ -80,12 +80,6 @@ KebabOS.applications.todo.application.views.TodoGridPanel = Ext.extend(Ext.grid.
                 type: 'string',
                 dataIndex: 'todo'
             },{
-                type: 'date',
-                dataIndex: 'created_at'
-            },{
-                type: 'date',
-                dataIndex: 'dueDate'
-            },{
                 type: 'boolean',
                 dataIndex: 'status'
             }]
@@ -103,7 +97,6 @@ KebabOS.applications.todo.application.views.TodoGridPanel = Ext.extend(Ext.grid.
         },{
             header: Kebab.helper.translate('Created At'),
             dataIndex: 'created_at',
-            filterable: true,
             align: 'center',
             width: .1,
             renderer: function(v) {
@@ -113,7 +106,6 @@ KebabOS.applications.todo.application.views.TodoGridPanel = Ext.extend(Ext.grid.
             header: Kebab.helper.translate('Due Date'),
             dataIndex: 'dueDate',
             align: 'center',
-            filterable: true,
             width: .1,
             editor: new Ext.form.DateField({format: 'Y-m-d'}),
             renderer: function(v) {

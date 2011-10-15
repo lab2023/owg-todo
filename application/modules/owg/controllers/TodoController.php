@@ -46,7 +46,8 @@ class Owg_TodoController extends Kebab_Rest_Controller
             'id'      => 'todo.id',
             'todo'    => 'todo.todo',
             'status'  => 'todo.status',
-            'dueDate' => 'todo.dueDate'
+            'dueDate' => 'todo.dueDate',
+            'created_at' => 'todo.created_at'
         );
 
         // Options
