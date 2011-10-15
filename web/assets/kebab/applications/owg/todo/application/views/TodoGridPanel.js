@@ -72,26 +72,10 @@ KebabOS.applications.todo.application.views.TodoGridPanel = Ext.extend(Ext.grid.
      * Build the grid columns
      */
     buildColumns: function() {
-
-        // Initialize grid filfers
-        var filters = new Ext.ux.grid.GridFilters({
-            encode: true,
-            filters: [{
-                type: 'string',
-                dataIndex: 'todo'
-            },{
-                type: 'boolean',
-                dataIndex: 'status'
-            }]
-        });
-
-        // Add grid filter plug-in
-        this.plugins = [filters];
         
         return [{
             header:  Kebab.helper.translate('Todo'),
             dataIndex: 'todo',
-            filterable: true,
             width: .6,
             editor: new Ext.form.TextField()
         },{
@@ -119,7 +103,6 @@ KebabOS.applications.todo.application.views.TodoGridPanel = Ext.extend(Ext.grid.
         },{
             header: Kebab.helper.translate('Status'),
             dataIndex: 'status',
-            filterable: true,
             width: .1,
             xtype:'checkcolumn',
             align: 'center',

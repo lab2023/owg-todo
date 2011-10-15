@@ -47,7 +47,7 @@ class Owg_Model_Todo
         }
 
         if (array_key_exists('search', $options)) {
-            $query->orWhereIn('todo.id', $options['search']);
+            $query->andWhereIn('todo.id', $options['search']);
         }
 
         return $query;

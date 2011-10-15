@@ -57,7 +57,6 @@ class Owg_TodoController extends Kebab_Rest_Controller
 
         // Model
         $query         = Owg_Model_Todo::getAllByUserId($userSessionId, $options);
-        $query         = $this->_helper->filter($query, $mapping);
 
         // Pager
         $pager         = $this->_helper->pagination($query);
